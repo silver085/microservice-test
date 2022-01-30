@@ -58,17 +58,16 @@ pipeline {
 				}
 			}
 		}
-		stage('Run the image'){
-			agent docker {
+		stage('Run docker image'){
+			steps {
 				
-				image "$dockerImage"
-				reuseNode true
+				sh """
+					docker run --rm -p 8000:8000 fmontesano/microservice-test:latest
+				"""
 				
-				steps {
-					
-				}
 			}
 		}
+		
 	} 
 	
 	post {
