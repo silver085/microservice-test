@@ -1,5 +1,7 @@
 pipeline {
-	agent any
+	agent {
+		docker true
+	}
 	environment {
 		dockerHome = tool "myDocker"
 		mavenHome = tool "myMVN"
@@ -58,15 +60,7 @@ pipeline {
 				}
 			}
 		}
-		stage('Run docker image'){
-			steps {
-				
-				sh """
-					docker run --rm -p 8000:8000 fmontesano/microservice-test:${env.BUILD_TAG}
-				"""
-				
-			}
-		}
+		
 		
 	} 
 	
@@ -76,6 +70,15 @@ pipeline {
 		}
 		success {
 			echo "Succesfully!"
+			stage('Run docker image'){
+			steps {
+				
+				sh """
+					docker run --rm -p 8000:8000 fmontesano/microservice-test:${env.BUILD_TAG}
+				"""
+				
+			}
+		}
 		}
 		failure {
 			echo "Problems happened."
