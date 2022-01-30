@@ -64,6 +64,9 @@ pipeline {
 					image "$dockerImage"
 					reuseNode true
 				}
+				steps {
+					
+				}
 			}
 		}
 	} 
