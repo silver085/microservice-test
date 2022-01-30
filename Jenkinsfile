@@ -60,8 +60,8 @@ pipeline {
 		}
 		stage('Run the image'){
 			steps {
-				docker.image(dockerImage).withRun('-p 8000:8000') {
-					echo "Running docker image..."
+				script {
+					docker.image(dockerImage).withRun('-p 8000:8000') {}
 				}
 			}
 		}
