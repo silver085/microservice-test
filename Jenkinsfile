@@ -62,7 +62,7 @@ pipeline {
 			steps {
 				
 				sh """
-					docker run --rm -p 8000:8000 fmontesano/microservice-test:latest
+					docker run --rm -p 8000:8000 fmontesano/microservice-test:${env.BUILD_TAG}
 				"""
 				
 			}
