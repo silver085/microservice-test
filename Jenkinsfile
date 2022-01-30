@@ -59,7 +59,7 @@ pipeline {
 			}
 		}
 		stage('Run the image'){
-			agent docker{
+			agent docker {
 				
 				image "$dockerImage"
 				reuseNode true
