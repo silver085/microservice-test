@@ -60,7 +60,7 @@ pipeline {
 		}
 		stage('Run the image'){
 			steps {
-				sh "docker run -p 8000:8000 fmontesano/microservice-test:${env.BUILD_TAG}"
+				docker.image(dockerImage).withRun('-p 8000:8000')
 			}
 		}
 	} 
