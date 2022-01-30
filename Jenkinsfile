@@ -59,9 +59,10 @@ pipeline {
 			}
 		}
 		stage('Run the image'){
-			steps {
-				script {
-					docker.image(dockerImage).withRun('-p 8000:8000') {}
+			agent {
+				docker {
+					image "$dockerImage"
+					reuseNode true
 				}
 			}
 		}
